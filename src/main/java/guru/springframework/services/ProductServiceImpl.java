@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService {
 
 		Product product5 = new Product();
 		product5.setId(5);
-		product5.setDescription("Product 2");
+		product5.setDescription("Product 5");
 		product5.setPrice(new BigDecimal("25.99"));
 		product5.setImageUrl("http://example.com/product5");
 
@@ -89,5 +89,10 @@ public class ProductServiceImpl implements ProductService {
 	
 	private Integer getNextKey() {
 		return Collections.max(products.keySet()) + 1;
+	}
+
+	@Override
+	public void deleteProduct(Integer id) {
+		products.remove(id);
 	}
 }
