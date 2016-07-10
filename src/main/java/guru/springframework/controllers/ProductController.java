@@ -47,12 +47,13 @@ public class ProductController {
 	@RequestMapping(value="/product", method = RequestMethod.POST)
 	public String saveOrUpdateProduct(Product product) {
 		Product savedProduct = productService.saveOrUpdate(product);
-		return "redirect:/product/product/"+savedProduct.getId();
+		//remember that redirect has to point to a controller url, not the the template directory
+		return "redirect:/product/"+savedProduct.getId();
 	}
 	
 	@RequestMapping("/product/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		productService.deleteProduct(id);
-		return  "redirect:product/products";
+		return  "redirect:/products";
 	}
 }

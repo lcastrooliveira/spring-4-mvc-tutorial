@@ -32,7 +32,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import guru.springframework.domain.Product;
 import guru.springframework.services.ProductService;
 
-public class ProductControllerTest {
+public class ProductControllerTest implements SimpleCRUDTester {
 
 	@Mock //mockito mock object
 	private ProductService productService;
@@ -122,7 +122,7 @@ public class ProductControllerTest {
 				.param("price","12.00")
 				.param("imageUrl","example.com"))
 					.andExpect(status().is3xxRedirection())
-					.andExpect(view().name("redirect:/product/product/1"))
+					.andExpect(view().name("redirect:/product/1"))
 					.andExpect(model().attribute("product", instanceOf(Product.class)))
 					.andExpect(model().attribute("product", hasProperty("id", is(id))))
 					.andExpect(model().attribute("product", hasProperty("description", is(description))))
@@ -146,7 +146,7 @@ public class ProductControllerTest {
 		Integer id = 1;
 		mockMvc.perform(get("/product/delete/1"))
 			.andExpect(status().is3xxRedirection())
-			.andExpect(view().name("redirect:product/products"));
+			.andExpect(view().name("redirect:/products"));
 		
 		verify(productService,times(1)).deleteProduct(id);
 	}
