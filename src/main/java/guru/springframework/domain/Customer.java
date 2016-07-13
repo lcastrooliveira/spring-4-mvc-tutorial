@@ -1,10 +1,28 @@
 package guru.springframework.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Customer {
 
 	private String firstName, lastName, email, phoneNumber, addressLine1, addressLine2, city, state, zipCode;
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	
+	private Integer version;
+	
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -84,8 +102,6 @@ public class Customer {
 
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
-	}
-	
-	
+	}	
 	
 }
