@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import guru.springframework.domain.Customer;
-import guru.springframework.services.CustomerService;
+import guru.springframework.services.interfaces.CustomerService;
 
 @Controller
 public class CustomerController {

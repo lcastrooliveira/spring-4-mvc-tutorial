@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Version;
 
 @Entity
-public class Product {
+public class Product implements DomainObject {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

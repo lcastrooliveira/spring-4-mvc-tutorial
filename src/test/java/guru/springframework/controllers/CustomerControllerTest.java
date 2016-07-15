@@ -30,7 +30,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import guru.springframework.domain.Customer;
-import guru.springframework.services.CustomerService;
+import guru.springframework.services.interfaces.CustomerService;
 
 
 public class CustomerControllerTest implements SimpleCRUDTester {

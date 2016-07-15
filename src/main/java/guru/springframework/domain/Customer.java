@@ -4,13 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 @Entity
 public class Customer {
 
 	private String firstName, lastName, email, phoneNumber, addressLine1, addressLine2, city, state, zipCode;
-
+	
+	@OneToOne
+	private User user;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
@@ -104,6 +108,13 @@ public class Customer {
 
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
-	}	
-	
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

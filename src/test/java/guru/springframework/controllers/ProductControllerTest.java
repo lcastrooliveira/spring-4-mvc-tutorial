@@ -30,7 +30,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import guru.springframework.domain.Product;
-import guru.springframework.services.ProductService;
+import guru.springframework.services.interfaces.ProductService;
 
 public class ProductControllerTest implements SimpleCRUDTester {
 
@@ -55,7 +55,7 @@ public class ProductControllerTest implements SimpleCRUDTester {
 		products.add(new Product());
 		
 		//specific  mockito interaction, tell stub to return list of products
-		when(productService.listAllProducts()).thenReturn(products);
+		when(productService.listAll()).thenReturn(products);
 		
 		mockMvc.perform(get("/products"))
 			.andExpect(status().isOk())
@@ -68,7 +68,7 @@ public class ProductControllerTest implements SimpleCRUDTester {
 		Integer id = 1;
 		
 		//Tell mockito stub to return new product for ID 1
-		when(productService.getProductById(id)).thenReturn(new Product());
+		when(productService.findById(id)).thenReturn(new Product());
 		
 		mockMvc.perform(get("/product/1"))
 		.andExpect(status().isOk())
@@ -81,7 +81,7 @@ public class ProductControllerTest implements SimpleCRUDTester {
 		Integer id = 1;
 		
 		//Tell mockito stub to return new product for ID 1
-		when(productService.getProductById(id)).thenReturn(new Product());
+		when(productService.findById(id)).thenReturn(new Product());
 		
 		mockMvc.perform(get("/product/edit/1"))
 		.andExpect(status().isOk())
@@ -148,7 +148,7 @@ public class ProductControllerTest implements SimpleCRUDTester {
 			.andExpect(status().is3xxRedirection())
 			.andExpect(view().name("redirect:/products"));
 		
-		verify(productService,times(1)).deleteProduct(id);
+		verify(productService,times(1)).delete(id);
 	}
 	
 }
